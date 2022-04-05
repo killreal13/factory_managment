@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'factory_management.apps.Factory_managementConfig'
+    'factory_management.apps.FactoryManagementConfig'
 ]
 
 MIDDLEWARE = [
