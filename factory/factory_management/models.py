@@ -32,9 +32,10 @@ class Worker(models.Model):
     def get_head(self):
         return WorkerRelation.objects.get(secondary=self.worker_id)
 
-    @property
-    def get_s(self):
-        return WorkerRelation.objects.get(secondary=self.worker_id)
+
+    # @property
+    # def get_s(self):
+    #     return WorkerRelation.objects.get(secondary=self.worker_id)
     # def __str__(self):
     #     head = WorkerRelation.objects.all().filter(secondary=self.worker_id).values('head')
     #     return self.full_name, self.position, head

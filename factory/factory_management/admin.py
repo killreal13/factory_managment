@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import *
 from django.utils.translation import gettext_lazy as _
 
-
 admin.site.register(WorkerRelation)
 
 
@@ -14,7 +13,7 @@ class PositionFilter(admin.SimpleListFilter):
     def lookups(self, request, model_admin):
         return (
             ('yes', _('Yes')),
-            ('no',  _('No')),
+            ('no', _('No')),
         )
 
     def queryset(self, request, queryset):
@@ -27,3 +26,9 @@ class AdminView(admin.ModelAdmin):
     list_display_links = ['get_head']
     list_filter = [PositionFilter]
 
+    @admin.action(description='Clear payments information')
+    def clear_payments_information(self, request, queryset):
+        queryset.update(paid_salary=0)
+        self.message_user(request, f'Selected workers payments information is cleared')
+
+    admin.site.add_action(clear_payments_information)
