@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import psycopg2
+# import psycopg2
 from .secrets import SECRETS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'factory_management.apps.FactoryManagementConfig',
-    'rest_framework'
+    'rest_framework',
+    'django_seed',
 ]
 
 MIDDLEWARE = [
@@ -78,13 +79,17 @@ WSGI_APPLICATION = 'factory.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'FactoryManagement',
+    #     'USER': SECRETS['USER'],
+    #     'PASSWORD': SECRETS['PASSWORD'],
+    #     'HOST': SECRETS['HOST'],
+    #     'PORT': SECRETS['PORT']
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'FactoryManagement',
-        'USER': SECRETS['USER'],
-        'PASSWORD': SECRETS['PASSWORD'],
-        'HOST': SECRETS['HOST'],
-        'PORT': SECRETS['PORT']
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
