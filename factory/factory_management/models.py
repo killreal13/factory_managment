@@ -24,6 +24,7 @@ class Worker(models.Model):
         ('SM', 'Subordinate manager'),
         ('SW', 'Simple worker')
     ], default='SW')
+    level = models.IntegerField(null=True, blank=True)
     hiring_date = models.DateField(null=False, blank=False)
     salary = models.DecimalField(null=False, blank=False, decimal_places=2, max_digits=10)
     paid_salary = models.DecimalField(null=False, blank=False, decimal_places=2, max_digits=10)
@@ -31,6 +32,9 @@ class Worker(models.Model):
     @property
     def get_head(self):
         return WorkerRelation.objects.get(secondary=self.worker_id)
+
+    class Meta:
+        permissions = [('kek', 'kek'),]
 
 
     # @property
