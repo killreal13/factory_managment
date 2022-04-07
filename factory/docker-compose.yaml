@@ -6,19 +6,19 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=FM1
+      - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=5534097
+      - POSTGRES_PASSWORD=postgres
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/factory/
     ports:
       - "8000:8000"
     environment:
-      - POSTGRES_NAME=FM1
+      - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=5534097
+      - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
