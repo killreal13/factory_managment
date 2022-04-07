@@ -2,8 +2,6 @@ from django.contrib import admin
 from .models import *
 from django.utils.translation import gettext_lazy as _
 
-admin.site.register(WorkerRelation)
-
 
 class PositionFilter(admin.SimpleListFilter):
     title = _('position')
@@ -47,3 +45,6 @@ class AdminView(admin.ModelAdmin):
         self.message_user(request, f'Selected workers payments information is cleared')
 
     admin.site.add_action(clear_payments_information)
+
+
+admin.site.register(WorkerRelation)

@@ -21,7 +21,9 @@ class WorkersData(APIView):
             if user_data['position'] == position:
                 request.user.groups.add(group_with_access)
         if not request.user.has_perm('Can use APIs'):
-            return Response(status=423)
+            queryset = Worker.objects.get(user=request.user)
+            serializer_for_queryset = WorkerDataSerializer(instance=queryset, many=False)
+            return Response(serializer_for_queryset.data)
         if queryset:
             return Response(serializer_for_queryset.data)
         return Response(status=204)
@@ -39,7 +41,9 @@ class SameLevelWorkersData(APIView):
             if user_data['position'] == position:
                 request.user.groups.add(group_with_access)
         if not request.user.has_perm('Can use APIs'):
-            return Response(status=423)
+            queryset = Worker.objects.get(user=request.user)
+            serializer_for_queryset = WorkerDataSerializer(instance=queryset, many=False)
+            return Response(serializer_for_queryset.data)
         if queryset:
             return Response(serializer_for_queryset.data)
         return Response(status=204)
