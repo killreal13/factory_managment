@@ -43,6 +43,7 @@ class AdminView(admin.ModelAdmin):
     def clear_payments_information(self, request, queryset):
         queryset.update(paid_salary=0)
         self.message_user(request, f'Selected workers payments information is cleared')
+        print(len(queryset))
 
     admin.site.add_action(clear_payments_information)
 

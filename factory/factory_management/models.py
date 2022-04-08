@@ -14,8 +14,8 @@ from django.contrib.auth.models import User
 
 
 class Worker(models.Model):
-    # worker_id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, primary_key=True, null=False, blank=False, on_delete=models.CASCADE)
+    worker_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, null=False, blank=False, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=150, null=False, blank=False)
     position = models.CharField(max_length=200, choices=[
         ('CEO', 'CEO'),
@@ -32,9 +32,6 @@ class Worker(models.Model):
     @property
     def get_head(self):
         return WorkerRelation.objects.get(secondary=self.worker_id)
-
-    class Meta:
-        permissions = [('kek', 'kek'),]
 
 
     # @property
