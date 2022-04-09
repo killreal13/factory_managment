@@ -13,7 +13,6 @@ services:
     image: redis:5-alpine
     depends_on:
       - db
-      - web
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -27,6 +26,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+      - redis
   celery:
     build: .
     command: celery worker --app=core --loglevel=info
@@ -39,5 +39,4 @@ services:
       - CELERY_BROKER=redis://redis:6379/0
       - CELERY_BACKEND=redis://redis:6379/0
     depends_on:
-      - web
       - redis

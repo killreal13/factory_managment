@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import *
 from django.utils.translation import gettext_lazy as _
+from .models import *
+from .tasks import async_info_update
 
 
 class PositionFilter(admin.SimpleListFilter):
@@ -41,9 +42,11 @@ class AdminView(admin.ModelAdmin):
 
     @admin.action(description='Clear payments information')
     def clear_payments_information(self, request, queryset):
-        queryset.update(paid_salary=0)
-        self.message_user(request, f'Selected workers payments information is cleared')
-        print(len(queryset))
+        if len(queryset) > 20:
+            async_info_update.delay(queryset)
+        else:
+            queryset.update(paid_salary=0)
+        self.message_user(request, 'Selected workers payments information is cleared')
 
     admin.site.add_action(clear_payments_information)
 

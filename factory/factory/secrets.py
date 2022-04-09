@@ -1,1 +1,1 @@
-SECRETS = {'SECRET_KEY': 'django-insecure-nd**kk)t&b&#a_2f+kd891vpt9gvg#yn6_jd1v)lt^112m9e&o','USER': 'postgres', 'PASSWORD': '5534097', 'HOST': '127.0.0.1', 'PORT': '5432'}
+SECRETS = {'SECRET_KEY': 'django-insecure-nd**kk)t&b&#a_2f+kd891vpt9gvg#yn6_jd1v)lt^112m9e&o'}

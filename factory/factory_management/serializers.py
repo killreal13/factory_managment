@@ -1,6 +1,6 @@
+import json
 from rest_framework import serializers
 from django.core import serializers as json_serializer
-import json
 
 
 class WorkerDataSerializer(serializers.Serializer):
